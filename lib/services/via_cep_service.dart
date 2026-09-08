@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/endereco.dart';
 
@@ -9,19 +10,27 @@ class ViaCepService {
       throw Exception('CEP inválido. Deve conter 8 dígitos.');
     }
 
-    final url = Uri.parse('https://viacep.com.br/ws/$cepLimpo/json/');
+    final url = Uri.parse(
+      'https://viacep.com.br/ws/$cepLimpo/json/',
+    );
+
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> dados = jsonDecode(response.body);
+      final Map<String, dynamic> dados =
+          json.decode(response.body);
 
       if (dados.containsKey('erro') && dados['erro'] == true) {
-        throw Exception('CEP não encontrado na base de dados.');
+        throw Exception(
+          'CEP não encontrado na base de dados.',
+        );
       }
 
       return Endereco.fromJson(dados);
     } else {
-      throw Exception('Falha ao conectar com o serviço ViaCEP.');
+      throw Exception(
+        'Falha ao conectar com o serviço de ViaCEP.',
+      );
     }
   }
 }

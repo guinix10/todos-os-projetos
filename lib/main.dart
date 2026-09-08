@@ -12,10 +12,10 @@ class CepApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Consulta CEP',
+      title: 'Consulta de CEP',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
       home: const HomeScreen(),
@@ -32,6 +32,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _cepController = TextEditingController();
+
   Endereco? _enderecoResult;
   bool _isLoading = false;
   String? _errorMessage;
@@ -44,7 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     try {
-      final resultado = await ViaCepService.buscarCep(_cepController.text);
+      final resultado =
+          await ViaCepService.buscarCep(_cepController.text);
+
       setState(() {
         _enderecoResult = resultado;
       });
@@ -69,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Consulta CEP (ViaCEP API)'),
+        title: const Text('Consulta de CEP (ViaCEP API)'),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
         centerTitle: true,
@@ -86,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 labelText: 'Informe o CEP (somente números)',
                 hintText: 'Ex: 01001000',
                 border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.location_on),
+                prefixIcon: Icon(Icons.location_city),
               ),
             ),
             const SizedBox(height: 12),
@@ -97,12 +100,14 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 14),
+                padding: const EdgeInsets.symmetric(vertical: 12),
               ),
             ),
             const SizedBox(height: 24),
             if (_isLoading)
-              const Center(child: CircularProgressIndicator()),
+              const Center(
+                child: CircularProgressIndicator(),
+              ),
             if (_errorMessage != null)
               Card(
                 color: Colors.red.shade50,
@@ -110,7 +115,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     _errorMessage!,
-                    style: const TextStyle(color: Colors.red, fontSize: 16),
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
@@ -123,13 +131,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${_enderecoResult!.logradouro}',
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        '${_enderecoResult!.logradouro}, ${_enderecoResult!.bairro}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 8),
-                      Text('Bairro: ${_enderecoResult!.bairro}'),
-                      Text('Cidade/UF: ${_enderecoResult!.localidade} - ${_enderecoResult!.uf}'),
-                      Text('CEP: ${_enderecoResult!.cep}'),
+                      Text(
+                        'Bairro: ${_enderecoResult!.bairro}',
+                      ),
+                      Text(
+                        'Cidade: ${_enderecoResult!.localidade} - ${_enderecoResult!.uf}',
+                      ),
+                      Text(
+                        'CEP: ${_enderecoResult!.cep}',
+                      ),
                     ],
                   ),
                 ),
