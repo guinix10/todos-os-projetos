@@ -20,8 +20,17 @@ class CartaoEstudante extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 320,
+
+      // Exercício 4 - Fundo gradiente
       decoration: BoxDecoration(
-        color: Colors.green.shade50,
+        gradient: LinearGradient(
+          colors: [
+            Colors.green.shade50,
+            Colors.white,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: Colors.green,
@@ -35,14 +44,16 @@ class CartaoEstudante extends StatelessWidget {
           ),
         ],
       ),
+
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Exercício 1 - Imagem usando NetworkImage
             CircleAvatar(
               radius: 40,
-              foregroundImage: NetworkImage(imagem),
+              backgroundImage: NetworkImage(imagem),
             ),
 
             const SizedBox(height: 12),
@@ -126,6 +137,70 @@ class CartaoEstudante extends StatelessWidget {
               ],
             ),
 
+            const Divider(
+              height: 24,
+              thickness: 1,
+            ),
+
+            // Exercício 2 - Sobre Mim
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Sobre Mim',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 6),
+
+            const Text(
+              'Sou estudante de tecnologia e tenho interesse '
+              'em desenvolvimento de aplicativos e programação. '
+              'Estou aprendendo Flutter para criar aplicações móveis.',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            // Exercício 3 - Badges de habilidades
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Habilidades',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Chip(
+                  label: Text('Flutter'),
+                ),
+                SizedBox(width: 5),
+                Chip(
+                  label: Text('Dart'),
+                ),
+                SizedBox(width: 5),
+                Chip(
+                  label: Text('HTML'),
+                ),
+              ],
+            ),
+
             const SizedBox(height: 16),
 
             ElevatedButton(
@@ -140,3 +215,5 @@ class CartaoEstudante extends StatelessWidget {
     );
   }
 }
+
+
