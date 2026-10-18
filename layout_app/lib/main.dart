@@ -1,9 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MeuLayoutApp());
-}
+void main() => runApp(const MeuLayoutApp());
 
 class MeuLayoutApp extends StatelessWidget {
   const MeuLayoutApp({super.key});
@@ -25,6 +23,27 @@ class MeuLayoutApp extends StatelessWidget {
 class TelaDashboard extends StatelessWidget {
   const TelaDashboard({super.key});
 
+  Widget estatistica(IconData icone, String numero, String legenda,
+      Color fundo) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: fundo,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          Icon(icone, size: 30, color: Colors.teal),
+          const SizedBox(height: 8),
+          Text(numero, style: const TextStyle(
+            fontSize: 22, fontWeight: FontWeight.bold)),
+          Text(legenda, textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 12, color: Colors.grey)),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,83 +56,29 @@ class TelaDashboard extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              'Resumo das Observacoes',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+            const Text('Resumo das Observacoes',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             Row(
               children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.teal.shade100,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Column(
-                      children: [
-                        Icon(Icons.flutter_dash, size: 30, color: Colors.teal),
-                        SizedBox(height: 8),
-                        Text('124', style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold)),
-                        Text('Aves Vistas', textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12, color: Colors.grey)),
-                      ],
-                    ),
-                  ),
-                ),
+                Expanded(child: estatistica(
+                  Icons.flutter_dash, '124', 'Aves Vistas',
+                  Colors.teal.shade100)),
                 const SizedBox(width: 8),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.teal.shade50,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Column(
-                      children: [
-                        Icon(Icons.place, size: 30, color: Colors.teal),
-                        SizedBox(height: 8),
-                        Text('18', style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold)),
-                        Text('Locais Visitados',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12, color: Colors.grey)),
-                      ],
-                    ),
-                  ),
-                ),
+                Expanded(child: estatistica(
+                  Icons.place, '18', 'Locais Visitados',
+                  Colors.teal.shade50)),
                 const SizedBox(width: 8),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.orange.shade100,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Column(
-                      children: [
-                        Icon(Icons.camera_alt, size: 30,
-                          color: Colors.deepOrange),
-                        SizedBox(height: 8),
-                        Text('45', style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold)),
-                        Text('Fotos', style: TextStyle(
-                          fontSize: 12, color: Colors.grey)),
-                      ],
-                    ),
-                  ),
-                ),
+                Expanded(child: estatistica(
+                  Icons.camera_alt, '45', 'Fotos',
+                  Colors.orange.shade100)),
               ],
             ),
             const SizedBox(height: 24),
-            const Text(
-              'Destaque da Semana',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+            const Text('Destaque da Semana',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 16),
             Stack(
               clipBehavior: Clip.none,
@@ -130,14 +95,16 @@ class TelaDashboard extends StatelessWidget {
                     children: [
                       const Icon(Icons.star, size: 48, color: Colors.amber),
                       const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Gaviao-Real', style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                          Text('Avistado no Parque Central',
-                            style: TextStyle(color: Colors.grey)),
-                        ],
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Gaviao-Real', style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                            Text('Avistado no Parque Central',
+                              style: TextStyle(color: Colors.grey)),
+                          ],
+                        ),
                       ),
                     ],
                   ),
