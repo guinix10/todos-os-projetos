@@ -126,6 +126,33 @@ class TelaDashboard extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 24),
+            const Text('Últimos Registros',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.teal.shade50,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Icon(Icons.list_alt, color: Colors.teal),
+                  const Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8),
+                      child: Text('Últimas aves registradas'),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Ver mais'),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
