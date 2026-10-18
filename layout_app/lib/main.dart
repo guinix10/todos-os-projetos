@@ -71,9 +71,25 @@ class TelaDashboard extends StatelessWidget {
                   Icons.place, '18', 'Locais Visitados',
                   Colors.teal.shade50)),
                 const SizedBox(width: 8),
-                Expanded(child: estatistica(
-                  Icons.camera_alt, '45', 'Fotos',
-                  Colors.orange.shade100)),
+
+                // EXERCICIO 04: Expanded removido propositalmente.
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  color: Colors.orange.shade100,
+                  child: const Column(
+                    children: [
+                      Icon(Icons.camera_alt, size: 30,
+                        color: Colors.deepOrange),
+                      SizedBox(height: 8),
+                      Text('45', style: TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.bold)),
+                      Text(
+                        'Fotos registradas durante todas as observacoes '
+                        'realizadas no parque',
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 24),
