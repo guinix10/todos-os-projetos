@@ -71,25 +71,9 @@ class TelaDashboard extends StatelessWidget {
                   Icons.place, '18', 'Locais Visitados',
                   Colors.teal.shade50)),
                 const SizedBox(width: 8),
-
-                // EXERCICIO 04: Expanded removido propositalmente.
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  color: Colors.orange.shade100,
-                  child: const Column(
-                    children: [
-                      Icon(Icons.camera_alt, size: 30,
-                        color: Colors.deepOrange),
-                      SizedBox(height: 8),
-                      Text('45', style: TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.bold)),
-                      Text(
-                        'Fotos registradas durante todas as observacoes '
-                        'realizadas no parque',
-                      ),
-                    ],
-                  ),
-                ),
+                Expanded(child: estatistica(
+                  Icons.camera_alt, '45', 'Fotos',
+                  Colors.orange.shade100)),
               ],
             ),
             const SizedBox(height: 24),
@@ -136,6 +120,21 @@ class TelaDashboard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Text('Raro', style: TextStyle(
+                      color: Colors.white, fontSize: 10,
+                      fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                Positioned(
+                  bottom: -8,
+                  left: -8,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Text('Confirmado', style: TextStyle(
                       color: Colors.white, fontSize: 10,
                       fontWeight: FontWeight.bold)),
                   ),
