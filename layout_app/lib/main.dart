@@ -46,34 +46,40 @@ class TelaDashboard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Row(
+
+            GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              childAspectRatio: 1.5,
               children: const [
-                Expanded(
-                  child: BlocoEstatistica(
-                    icone: Icons.flutter_dash,
-                    quantidade: '124',
-                    legenda: 'Aves Vistas',
-                  ),
+                BlocoEstatistica(
+                  icone: Icons.flutter_dash,
+                  quantidade: '124',
+                  legenda: 'Aves Vistas',
                 ),
-                SizedBox(width: 8),
-                Expanded(
-                  child: BlocoEstatistica(
-                    icone: Icons.place,
-                    quantidade: '18',
-                    legenda: 'Locais Visitados',
-                  ),
+                BlocoEstatistica(
+                  icone: Icons.place,
+                  quantidade: '18',
+                  legenda: 'Locais Visitados',
                 ),
-                SizedBox(width: 8),
-                Expanded(
-                  child: BlocoEstatistica(
-                    icone: Icons.camera_alt,
-                    quantidade: '45',
-                    legenda: 'Fotos',
-                    cor: Colors.deepOrange,
-                  ),
+                BlocoEstatistica(
+                  icone: Icons.camera_alt,
+                  quantidade: '45',
+                  legenda: 'Fotos',
+                  cor: Colors.deepOrange,
+                ),
+                BlocoEstatistica(
+                  icone: Icons.pets,
+                  quantidade: '12',
+                  legenda: 'Espécies',
+                  cor: Colors.green,
                 ),
               ],
             ),
+
             const SizedBox(height: 24),
             const Text(
               'Destaque da Semana',
@@ -83,6 +89,7 @@ class TelaDashboard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+
             Stack(
               clipBehavior: Clip.none,
               children: [
@@ -167,6 +174,7 @@ class TelaDashboard extends StatelessWidget {
                 ),
               ],
             ),
+
             const SizedBox(height: 24),
             const Text(
               'Últimos Registros',
@@ -176,6 +184,7 @@ class TelaDashboard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
+
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
