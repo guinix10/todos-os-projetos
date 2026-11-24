@@ -1,0 +1,22 @@
+
+{
+  "grupo": "A",
+  "selecoes": [
+    {
+      "nome": "México",
+      "rankingFifa": 15
+    },
+    {
+      "nome": "África do Sul",
+      "rankingFifa": 59
+    },
+    {
+      "nome": "República Tcheca",
+      "rankingFifa": 36
+    },
+    {
+      "nome": "Coreia do Sul",
+      "rankingFifa": 22
+    }
+  ]
+}
